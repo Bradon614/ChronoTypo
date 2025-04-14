@@ -5,47 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>ChronoTypo</title>
 </head>
 
 <body>
-    <header>
+
+
+    <header data-aos="fade-down"
+    data-aos-easing="linear"
+    data-aos-duration="1500">
             <nav>
                 <div class="nav_left">
                     <img src="logos/logo-icon-light-transparent.png" alt="" class="logo"><h1>ChronoTypo</h1>
                 </div>
                 <div class="nav_right">
-                    <button>Sign up</button>
-                    <button>Log in</button>
+                    <ul>
+                        <li><a href=""><i class="fa-regular fa-circle-user"></i></a></li>
+                        <li> <a href=""><i class="fa-solid fa-bars"></i></a></li>
+                    </ul>
+                
                 </div>
             </nav>
     </header>
 
 
     <main>
-        <h1>Typing Test</h1>
-        <label for="mode">Select Mode:</label>
-        <select id="mode">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-    </main>
 
+        <section>
+            <div class="box" data-aos="fade-right" data-aos-duration="3000">
 
-    <section>
-        <p id="word-display"></p>
-    </section>
- <input type="text" id="input-field" autofocus>
-        <p id="results">Results : </p>
+                <div class="box_container"><p id="word-display"></p></div>
+               
+                <div class="box_mode">
 
-    <aside>
-        
+                    <label for="mode">Select Mode:</label>
+                    <select id="mode">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+
+                </div>
+            </div>
+        </section>
+
+        <form action="" data-aos="fade-up" data-aos-duration="3000"> <input type="text" id="input-field" autofocus></form>
+
+         <aside class="chat-container" data-aos="fade-left" data-aos-duration="3000">
+        <div class="chat-header">
+            <h2>Chat</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message received">My best score is 42WPN</div>
+            <div class="message sent">Mine is 120WPN 😅</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Écrivez un message..." id="message-input">
+            <button id="send-btn">Envoyer</button>
+        </div>
     </aside>
 
 
+    </main>
 
+
+    
+
+        
+        <!-- <p id="results">Results : </p> -->
+
+ 
     <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 </body>
 
 </html>
