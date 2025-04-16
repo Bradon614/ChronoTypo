@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("assets/img/JSGRReKuvxjpPGR5RcSo--0--ujhk2_2x-real-esrgan-x4-plus.jpg") no-repeat;
+    background: url("../assets/img/JSGRReKuvxjpPGR5RcSo--0--ujhk2_2x-real-esrgan-x4-plus.jpg") no-repeat;
     background-size: cover;
     background-position: center;
 }
