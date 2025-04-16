@@ -6,24 +6,39 @@
 }
 body {
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     min-height: 100vh;
-    background: url(ph.jpg) no-repeat;
+    background: url("assets/img/JSGRReKuvxjpPGR5RcSo--0--ujhk2_2x-real-esrgan-x4-plus.jpg") no-repeat;
     background-size: cover;
     background-position: center;
 }
+
+.welcome h1{
+    font-size: 40px;
+    padding-bottom: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgb(210, 101, 119),0 0 20px rgb(252, 101, 126), 0 0 40px rgb(249, 71, 101);
+}
+
+.welcome p{
+    color:whitesmoke;
+    padding-bottom: 1rem;
+}
+
 .wrapper {
     width: 400px;
     background-color: none;
-    color: white;
-    backdrop-filter: blur(5px);
+    color: whitesmoke;
+    backdrop-filter: blur(8px);
     padding: 30px 40px;
-    border: 2px solid rgb(117, 109, 109);
+    border: 2px solid rgb(12, 190, 209);
+    
 }
 .wrapper h1 {
     font-size: 36px;
     text-align: center;
+    color: #dad3d3;
 }
 .wrapper .input-box {
     width: 100%;
@@ -39,7 +54,7 @@ body {
     border: 2px solid grey;
     border-radius: 40px;
     font-size: 16px;
-    color: white;
+    color: rgb(114, 112, 112);
     padding: 20px 45px 20px 20px;
 }
 .input-box input::placeholder {
