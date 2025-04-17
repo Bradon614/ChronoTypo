@@ -30,7 +30,7 @@ body {
     width: 400px;
     background-color: none;
     color: whitesmoke;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
     padding: 30px 40px;
     border: 2px solid rgb(12, 190, 209);
     
