@@ -40,13 +40,25 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
   font-family: var(--body-font);
 }
 
 a {
   text-decoration: none;
 }
+.chronolevel{
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
 
+.container h1{
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
 img {
   display: block;
   max-width: 100%;
