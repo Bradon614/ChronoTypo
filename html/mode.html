@@ -3,89 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ChronoTypo</title>
     <link rel="stylesheet" href="../css/mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 </head>
 <body>
-    
-    <section class="card">
-        <!-- <div>
-            <h1>CHRONOTYPO</h1>
-            <span>SELECT YOUR LEVEL</span>
-        </div> -->
 
-        <img src="assets/img/JSGRReKuvxjpPGR5RcSo--0--ujhk2_2x-real-esrgan-x4-plus.jpg" alt="image" class="card__bg">
-        <div class="card__blur"></div>
-
+    <section class="container">
+        <div class="chronolevel">
+            <h2>CHRONOTYPO</h2>
+            <h1>SELECT YOUR LEVEL</h1>
+        </div>
+        <img src="/ChronoTypo/assets/img/JSGRReKuvxjpPGR5RcSo--0--ujhk2_2x-real-esrgan-x4-plus.jpg" alt="image" class="card__bg">
         <div class="card__container container">
-           <article class="card" onclick="loadText('easy')">
+           <article class="card__article card-yellow" onclick="loadText('easy')">
               <img src="../assets/img/img-1.png" alt="image" class="card__img">
               <div class="card__shadow"></div>
-  
               <div class="card__data">
                  <h2 class="card__name">EASY</h2>
-                 <span class="card__profession">Jump in and let your fingers dance without pressure!</span>
+                 <span class="card__level">Jump in and let your fingers dance without pressure!</span>
               </div>
-  
               <div class="card__clip">
                  <i class="ri-menu-4-line"></i>
               </div>
-
               <div class="info">
                  <div class="info__data">
                     <h2 class="info__name">EASY</h2>
-                    <a href="#" class="info__button">Start</a>
+                    <a href="#" class="info__button" onclick="loadText('easy')">Start</a>
                  </div>
-  
               </div>
            </article>
   
-           <article class="card" onclick="loadText('medium')">
+           <article class="card__article card-green" onclick="loadText('medium')">
               <img src="../assets/img/img-2.png" alt="image" class="card__img">
               <div class="card__shadow"></div>
-
               <div class="card__data">
                  <h2 class="card__name">MEDIUM</h2>
-                 <span class="card__profession">You've mastered the basics, now it's time for speed and precision!</span>
+                 <span class="card__level">You've mastered the basics, now it's time for speed and precision!</span>
               </div>
-  
               <div class="card__clip">
                  <i class="ri-menu-4-line"></i>
               </div>
-
               <div class="info">
                  <div class="info__data">
                     <h2 class="info__name">MEDIUM</h2>
-                    <a href="#" class="info__button">Start</a>
+                    <a href="#" class="info__button" onclick="loadText('medium')">Start</a>
                  </div>
-  
               </div>
            </article>
   
-           <article class="card" onclick="loadText('hard')">
+           <article class="card__article card-pink" onclick="loadText('hard')">
               <img src="../assets/img/img-3.png" alt="image" class="card__img">
               <div class="card__shadow"></div>
-
               <div class="card__data">
                  <h2 class="card__name">HARD</h2>
-                 <span class="card__profession">Speed is ramping up, precision is key… Show that you're a true keyboard master!</span>
+                 <span class="card__level">Speed is ramping up, precision is key… Show that you're a true keyboard master!</span>
               </div>
-  
               <div class="card__clip">
                  <i class="ri-menu-4-line"></i>
               </div>
-
               <div class="info">
                  <div class="info__data">
                     <h2 class="info__name">HARD</h2>
-                    <p id="textToType">Sélectionnez un niveau pour commencer.</p>
-                    <a href="#" class="info__button">Start</a>
+                    <a href="#" class="info__button" onclick="loadText('hard')">Start</a>
                  </div>
-  
               </div>
            </article>
         </div>
-     </section>
+
+      
+        <div class="content_box">
+            <div class="typing-test">
+                <p id="word-display"></p>
+            </div>
+
+            <div class="content">
+                <ul class="result-details">
+                    <li>
+                        <p>Time Left:</p>
+                        <span><b>60</b>s</span>
+                    </li>
+                    <li class="mistake">
+                        <p>Mistakes:</p>
+                        <span>0</span>
+                    </li>
+                    <li class="wpm">
+                        <p>WPM:</p>
+                        <span>0</span>
+                    </li>
+                </ul>
+                <button id="try-again">Try Again</button>
+            </div>
+        </div>
+    </section>
+
+   <script src="/ChronoTypo/JS/Typing.js"></script>
 </body>
 </html>
