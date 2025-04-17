@@ -16,7 +16,7 @@
         loginBtn.innerHTML = '<span class="loader"></span> Logging in...';
 
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "mode.html";
         }, 3000);
       } else {
         alert("Veuillez remplir les deux champs !");
