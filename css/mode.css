@@ -68,6 +68,8 @@ main{
     display: flex;
     width: 100%;
     justify-content: space-around;
+    background:linear-gradient(rgba(0, 0, 0, 0.37) , rgba(0, 0, 0, 0.288));
+
 }
 
 section{
@@ -306,7 +308,9 @@ select {
 }
 
 .chat{
-    color: #fff;
+    color:white;
+    text-shadow: 0 0 10px rgb(210, 101, 119),0 0 20px rgb(252, 101, 126), 0 0 40px rgb(249, 71, 101);
+
 }
 
 .chat-container {
