@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ChronoTypo</title>
+</head>
+
+<body>
+
+
+    <header>
+            <nav data-aos="fade-down">
+                <div class="nav_left">
+                    <img src="/assets/img/generated-cyberpunk-logo.png" alt="" class="logo"><h1>ChronoTypo</h1>
+                </div>
+                <div class="nav_right">
+
+                    <ul>
+                        <li><i class="fa-regular fa-circle-user"></i></li>
+                    </ul>
+                </div>
+            </nav>
+    </header>
+
+   
+
+    <main> <a href="/html/Typing.html"><i class="fa-regular fa-circle-left"></i></a>
+        <section>
+                <div class="wrapper" data-aos="flip-left">
+                    <input type="text" class="input-field">
+                    <div class="content-box">
+                        <div class="typing-text">
+                            <p id="paragraph"></p>
+                        </div>
+                        <div class="content">
+                            <ul class="result-details">
+                                <li class="time">
+                                    <p>
+                                        Time Left:
+                                    </p>
+                                    <span><b>60</b>s</span>
+                                </li>
+                                <li class="mistake">
+                                    <p>
+                                        Mistakes:
+                                    </p>
+                                    <span>0</span>
+                                </li>
+                                <li class="wpm">
+                                    <p>
+                                        WPM:
+                                    </p>
+                                    <span>0</span>
+                                </li>
+                                <li class="accuracy">
+                                    <p>
+                                        accuracy:
+                                    </p>
+                                    <span>0</span>
+                                </li>
+                            </ul>
+                            <button>Try Again</button>
+                        </div>
+                    </div>
+                </div>
+        
+                
+        <div class="graphique" data-aos="fade-up"
+        data-aos-anchor-placement="bottom-bottom">
+            <h3>Performance Overview</h3>
+            <canvas id="statsChart"></canvas>
+            <div class="stat-summary">
+                <p>Best WPM: <span id="best-wpm">--</span></p>
+                <p>Average Accuracy: <span id="avg-accuracy">--%</span></p>
+                <p>Total Characters Typed: <span id="total-characters">--</span></p>
+            </div>
+        </div>
+        </section>
+
+        <aside>
+
+            <div class="select-container">
+                <select id="select-mode">
+                    <option value="" disabled selected>Select you level</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  
+                </select>
+            </div>
+
+            <div >
+                <h2 class="chat">Chat with your community</h2>
+                <form class="chat-container" data-aos="fade-left"  data-aos-anchor="#example-anchor"
+                data-aos-offset="500"
+                data-aos-duration="500">
+                    <div class="chat-header" >
+                        <h2>Chat</h2>
+                        <button class="close-btn">&times;</button>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message received">Hi Guys ! I beat my best score</div>
+                        <div class="message sent">Congras bro !!🫡 💪🏼 , proud of u</div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Écrivez un message..." id="message-input">
+                        <button id="send-btn">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </aside>
+    </main>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/javascript/script.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+</html>

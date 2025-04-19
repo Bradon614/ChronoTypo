@@ -1,106 +1,158 @@
-/**
- * Point culture (en Français car je suis un peu obligé): 
- * Dans ce genre de jeu, un mot equivaut a 5 caractères, y compris les espaces. 
- * La precision, c'est le pourcentage de caractères tapées correctement sur toutes les caractères tapées.
- * 
- * Sur ce... Amusez-vous bien ! 
- */
-let startTime = null, previousEndTime = null;
-let currentWordIndex = 0;
-const wordsToType = [];
-
-const modeSelect = document.getElementById("mode");
-const wordDisplay = document.getElementById("word-display");
-const inputField = document.getElementById("input-field");
-const results = document.getElementById("results");
-
-const words = {
-    easy: ["apple", "banana", "grape", "orange", "cherry"],
-    medium: ["keyboard", "monitor", "printer", "charger", "battery"],
-    hard: ["synchronize", "complicated", "development", "extravagant", "misconception"]
+const paragraphs = {
+    easy: [
+        "Stand in the ashes of a trillion dead souls, and ask the ghosts if honor matters. The silence is your answer.",
+        "Even in dark times, we cannot relinquish the things that make us human."
+    ],
+    medium: [
+        "Men must be free to do what they believe. It is not our right to punish them for thinking what they do, no matter how much we disagree.",
+        "Aimer, ce n’est pas regarder l’un l’autre, mais regarder ensemble dans la même direction."
+    ],
+    hard: [
+        "Ny fahombiazana dia tsy vokatra amin’ny herim-pamoretana, fa amin’ny fahaizana miatrika sy mandresy ny sakana. Raha tonga amin’ny fotoana sarotra ianao, tsarovy fa io no fotoana hanaporofoanao ny herinao. Miezaha foana, satria ny ezaka dia mamorona ny ho avy.",
+        "Where other men blindly follow the truth, remember, nothing is true. Where other men are limited by morality or law, remember, everything is permitted. We work in the dark to serve the light. We are assassins.",
+    ]
 };
 
-// Generate a random word from the selected mode
-const getRandomWord = (mode) => {
-    const wordList = words[mode];
-    return wordList[Math.floor(Math.random() * wordList.length)];
-};
+const modeSelect = document.getElementById("select-mode");
+const typingText = document.querySelector(".typing-text p");
+const inpField = document.querySelector(".wrapper .input-field");
+const tryAgainBtn = document.querySelector(".content button");
+const timeTag = document.querySelector(".time span b");
+const mistakeTag = document.querySelector(".mistake span");
+const wpmTag = document.querySelector(".wpm span");
+const accuracyTag = document.querySelector(".accuracy span");
 
-// Initialize the typing test
-const startTest = (wordCount = 50) => {
-    wordsToType.length = 0; // Clear previous words
-    wordDisplay.innerHTML = ""; // Clear display
-    currentWordIndex = 0;
-    startTime = null;
-    previousEndTime = null;
+let timer;
+let maxTime = 60;
+let timeLeft = maxTime;
+let charIndex = mistakes = isTyping = 0;
 
-    for (let i = 0; i < wordCount; i++) {
-        wordsToType.push(getRandomWord(modeSelect.value));
+const ctx = document.getElementById('statsChart').getContext('2d');
+const statsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'WPM',
+            borderColor: 'rgb(75, 192, 192)',
+            data: [],
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: { title: { display: true, text: 'Time (s)' }},
+            y: { title: { display: true, text: 'WPM' }, beginAtZero: true }
+        }
     }
+});
 
-    wordsToType.forEach((word, index) => {
-        const span = document.createElement("span");
-        span.textContent = word + " ";
-        if (index === 0) span.style.color = "red"; // Highlight first word
-        wordDisplay.appendChild(span);
+function loadParagraph() {
+    const selectedMode = modeSelect.value || "easy"; 
+    const paragraphList = paragraphs[selectedMode];
+    const ranIndex = Math.floor(Math.random() * paragraphList.length);
+    
+    typingText.innerHTML = "";
+    paragraphList[ranIndex].split("").forEach(char => {
+        let span = `<span>${char}</span>`;
+        typingText.innerHTML += span;
     });
 
-    inputField.value = "";
-    results.textContent = "";
-};
+    typingText.querySelectorAll("span")[0].classList.add("active");
+    document.addEventListener("keydown", () => inpField.focus());
+    typingText.addEventListener("click", () => inpField.focus());
+}
 
-// Start the timer when user begins typing
-const startTimer = () => {
-    if (!startTime) startTime = Date.now();
-};
+function initTyping() {
+    let characters = typingText.querySelectorAll("span");
+    let typedChar = inpField.value.split("")[charIndex];
 
-// Calculate and return WPM & accuracy
-const getCurrentStats = () => {
-    const elapsedTime = (Date.now() - previousEndTime) / 1000; // Seconds
-    const wpm = (wordsToType[currentWordIndex].length / 5) / (elapsedTime / 60); // 5 chars = 1 word
-    const accuracy = (wordsToType[currentWordIndex].length / inputField.value.length) * 100;
-
-    return { wpm: wpm.toFixed(2), accuracy: accuracy.toFixed(2) };
-};
-
-// Move to the next word and update stats only on spacebar press
-const updateWord = (event) => {
-    if (event.key === " ") { // Check if spacebar is pressed
-        if (inputField.value.trim() === wordsToType[currentWordIndex]) {
-            if (!previousEndTime) previousEndTime = startTime;
-
-            const { wpm, accuracy } = getCurrentStats();
-            results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
-
-            currentWordIndex++;
-            previousEndTime = Date.now();
-            highlightNextWord();
-
-            inputField.value = ""; // Clear input field after space
-            event.preventDefault(); // Prevent adding extra spaces
+    if (charIndex < characters.length - 1 && timeLeft > 0) {
+        if (!isTyping) {
+            timer = setInterval(initTimer, 1000);
+            isTyping = true;
         }
-    }
-};
 
-// Highlight the current word in red
-const highlightNextWord = () => {
-    const wordElements = wordDisplay.children;
-
-    if (currentWordIndex < wordElements.length) {
-        if (currentWordIndex > 0) {
-            wordElements[currentWordIndex - 1].style.color = "black";
+        if (typedChar == null) {
+            if (charIndex > 0) {
+                charIndex--;
+                if (characters[charIndex].classList.contains("incorrect")) {
+                    mistakes--;
+                }
+                characters[charIndex].classList.remove("correct", "incorrect");
+            }
+        } else {
+            if (characters[charIndex].innerText == typedChar) {
+                characters[charIndex].classList.add("correct");
+            } else {
+                mistakes++;
+                characters[charIndex].classList.add("incorrect");
+            }
+            charIndex++;
         }
-        wordElements[currentWordIndex].style.color = "red";
+
+        characters.forEach(span => span.classList.remove("active"));
+        characters[charIndex].classList.add("active");
+
+        let wpm = Math.round(((charIndex - mistakes) / 5) / (maxTime - timeLeft) * 60);
+        wpm = wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
+
+        let accuracy = ((charIndex - mistakes) / charIndex) * 100;
+        accuracy = accuracy < 0 || !accuracy || accuracy === Infinity ? 0 : accuracy;
+
+        wpmTag.innerText = wpm;
+        mistakeTag.innerText = mistakes;
+        accuracyTag.innerText = accuracy.toFixed(2) + "%"; 
+    } else {
+        clearInterval(timer);
+        inpField.value = "";
     }
-};
+}
 
-// Event listeners
-// Attach `updateWord` to `keydown` instead of `input`
-inputField.addEventListener("keydown", (event) => {
-    startTimer();
-    updateWord(event);
-});
-modeSelect.addEventListener("change", () => startTest());
+function initTimer() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timeTag.innerText = timeLeft;
+        let wpm = Math.round(((charIndex - mistakes) / 5) / (maxTime - timeLeft) * 60);
 
-// Start the test
-startTest();
+        let accuracy = ((charIndex - mistakes) / charIndex) * 100;
+        accuracy = accuracy < 0 || !accuracy || accuracy === Infinity ? 0 : accuracy;
+
+        wpmTag.innerText = wpm;
+        accuracyTag.innerText = accuracy.toFixed(2) + "%";
+
+        updateStatsGraph(wpm, maxTime - timeLeft);
+    } else {
+        clearInterval(timer);
+    }
+}
+
+function updateStatsGraph(wpm, time) {
+    if (statsChart.data.labels.length > 60) { 
+        statsChart.data.labels.shift();
+        statsChart.data.datasets[0].data.shift();
+    }
+
+    statsChart.data.labels.push(time);
+    statsChart.data.datasets[0].data.push(wpm);
+    statsChart.update();
+}
+
+function resetGame() {
+    loadParagraph();
+    clearInterval(timer);
+    timeLeft = maxTime;
+    charIndex = mistakes = isTyping = 0;
+    inpField.value = "";
+    timeTag.innerText = timeLeft;
+    wpmTag.innerText = 0;
+    mistakeTag.innerText = 0;
+    accuracyTag.innerText = "0%"; 
+}
+
+modeSelect.addEventListener("change", loadParagraph);
+inpField.addEventListener("input", initTyping);
+tryAgainBtn.addEventListener("click", resetGame);
+
+loadParagraph();
