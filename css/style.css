@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif ;
 }
+
 body {
     display: flex;
     justify-content:space-around;
@@ -13,6 +15,8 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+
 
 .welcome h1{
     font-size: 40px;
@@ -34,6 +38,24 @@ body {
     padding: 30px 40px;
     border: 2px solid rgb(12, 190, 209);
     
+}
+button{
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4rem;
+    margin-left: 0.5rem;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(12, 190, 209);
+    border-color: rgb(12, 190, 209);
+    border-radius: 40px;
+}
+
+button a{
+    color: #fff;
+    text-decoration: none;
 }
 .wrapper h1 {
     font-size: 36px;
