@@ -1,5 +1,7 @@
 const paragraphs = [
-    "Their politician was, in this moment, a notour paperback. The first armless grouse is, in its own way, a gear."
+    "Their politician was, in this moment, a notour paperback. The first armless grouse is, in its own way, a gear.",
+    "War is cruel, and you cannot refine it; its violence, destruction, and suffering leave scars on the souls of those who endure it.",
+    "No matter how difficult the journey seems, every step forward is a victory. Trust in your ability, push past the doubt, and embrace the challenge—because greatness is built one step at a time."
 
 ];
 

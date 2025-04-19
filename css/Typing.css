@@ -59,7 +59,10 @@ nav{
     list-style: none;
     right: 0;
 }
-
+.welcome{
+    margin-top: 3rem;
+   margin-left: 7rem; 
+}
 
 .welcome h1{
     font-size: 40px;
@@ -74,11 +77,20 @@ nav{
     font-size: 21px;
 }
 
+.welcome button{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color:rgb(12, 190, 209) ;
+    background-color: #34373c;
+    color: white;
+}
+
 section{
     margin-top: 50px;
     margin-left: 110px;
-    /* border: solid; */
-    /* border-color: blue; */
+    
     width: 70%;
     height: 40vh;
 
@@ -92,7 +104,8 @@ input{
 .wrapper {
     width: 1000px; 
     padding:35px;   
-    background-color: #0f1010; 
+    background-color: #34373c; 
+    backdrop-filter: 20px;
     border-radius: 10px; 
     position: absolute; 
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
